@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\DetilKaryawan; //add Student Model - Data is coming from the database via Model.
+use App\Models\DetilKaryawan; 
+use App\Models\Karyawan;//add Student Model - Data is coming from the database via Model.
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class DetilKaryawanController extends Controller
 {
@@ -20,9 +22,20 @@ class DetilKaryawanController extends Controller
         return view ('detil_karyawan.index', compact('detil_karyawan'));
     }
 
+    public function cetak_pdf()
+    {
+        $detilkaryawan = DetilKaryawan::all();
+
+        $pdf = PDF::loadView('detil_karyawan.detil_karyawan_pdf', ['detil_karyawan' => $detilkaryawan])->setPaper('a3', 'landscape');
+        return $pdf->stream();
+
+        
+    }
+
     public function create()
     {
-        return view('detil_karyawan.create');
+        $karyawan = Karyawan::all(); 
+        return view('detil_karyawan.create', compact('karyawan'));
     }
     /**
      * Store a newly created resource in storage.
@@ -33,7 +46,7 @@ class DetilKaryawanController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'kode_karyawan' => 'required',
+            'nama_karyawan' => 'required',
             'nomor_ktp' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -52,7 +65,7 @@ class DetilKaryawanController extends Controller
 
             $detil_karyawan = new DetilKaryawan;
 //$detil_karyawan->kode_karyawan_detail = $request->kode_karyawan_detail;
-            $detil_karyawan->kode_karyawan = $request->kode_karyawan;
+            $detil_karyawan->nama_karyawan = $request->nama_karyawan;
             $detil_karyawan->nomor_ktp = $request->nomor_ktp;
             $detil_karyawan->tempat_lahir = $request->tempat_lahir;
             $detil_karyawan->tanggal_lahir = $request->tanggal_lahir;
@@ -76,19 +89,18 @@ class DetilKaryawanController extends Controller
     return view('detil_karyawan.show', compact('detil_karyawan'));
 }
 
-
-    
     public function edit($id)
     {
         $detil_karyawan = DetilKaryawan::findOrFail($id);
-        return view('detil_karyawan.edit', compact('detil_karyawan'));
+        $karyawan = Karyawan::all(); //semisal mau nama karyawan bisa diubah jika tidak mau maka bisa di hapus saja
+        return view('detil_karyawan.edit', compact('detil_karyawan', 'karyawan'));
     }
 
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kode_karyawan' => 'required',
+            'nama_karyawan' => 'required',
             'nomor_ktp' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',
@@ -101,7 +113,7 @@ class DetilKaryawanController extends Controller
             // tambahkan validasi untuk field lainnya
         ]);
         $detil_karyawan = DetilKaryawan::findOrFail($id);
-        $detil_karyawan->kode_karyawan = $request->kode_karyawan;
+        $detil_karyawan->nama_karyawan = $request->nama_karyawan;
         $detil_karyawan->nomor_ktp = $request->nomor_ktp;
         $detil_karyawan->tempat_lahir = $request->tempat_lahir;
         $detil_karyawan->tanggal_lahir = $request->tanggal_lahir;

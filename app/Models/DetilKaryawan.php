@@ -29,8 +29,11 @@ class DetilKaryawan extends Model
         protected $table = 'detil_karyawan'; // Sesuaikan dengan nama tabel yang benar
     
         protected $primaryKey = 'kode_karyawan_detail';
-        protected $fillable = ['kode_karyawan', 'nomor_ktp', 'tempat_lahir', 'tanggal_lahir', 'alamat_ktp', 'kota_ktp', 'provinsi_ktp', 'kode_pos_ktp', 'nomor_telepon', 'email'];
+        protected $fillable = ['nama_karyawan', 'nomor_ktp', 'tempat_lahir', 'tanggal_lahir', 'alamat_ktp', 'kota_ktp', 'provinsi_ktp', 'kode_pos_ktp', 'nomor_telepon', 'email'];
     
-    
+        public function karyawan()
+        {
+            return $this->belongsTo(Karyawan::class, 'nama_karyawan', 'nama_karyawan');
+        }
 
 }

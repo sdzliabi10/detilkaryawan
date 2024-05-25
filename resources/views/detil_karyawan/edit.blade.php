@@ -8,10 +8,19 @@
         <label for="kode_karyawan_detail">Kode Karyawan Detail</label>
         <input type="text" class="form-control" id="kode_karyawan_detail" name="kode_karyawan_detail" value="{{ $detil_karyawan->kode_karyawan_detail }}" disabled>
     </div>
-    <div class="form-group">
-        <label for="kode_karyawan">Kode Karyawan</label>
-        <input type="text" class="form-control" id="kode_karyawan" name="kode_karyawan" value="{{ $detil_karyawan->kode_karyawan }}" required>
-    </div>
+    <!-- <div class="form-group">
+            <label for="nama_karyawan">Nama Karyawan</label>
+            <input type="text" class="form-control" id="nama_karyawan" name="nama_karyawan" value="{{ $detil_karyawan->nama_karyawan }}" readonly>
+        </div> -->
+        <div class="form-group">
+            <label for="nama_karyawan">Nama Karyawan</label>
+            <select class="form-control" id="nama_karyawan" name="nama_karyawan" required>
+                <option value="">Pilih Karyawan</option>
+                @foreach($karyawan as $k)
+                    <option value="{{ $k->nama_karyawan }}" {{ $detil_karyawan->nama_karyawan == $k->nama_karyawan ? 'selected' : '' }}>{{ $k->nama_karyawan }}</option>
+                @endforeach
+            </select>
+        </div>
     <div class="form-group">
         <label for="nomor_ktp">Nomor KTP</label>
         <input type="text" class="form-control" id="nomor_ktp" name="nomor_ktp" value="{{ $detil_karyawan->nomor_ktp }}" required>

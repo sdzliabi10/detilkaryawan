@@ -40,15 +40,16 @@
                         @csrf
                         <button type="submit" class="btn btn-danger mt-3"><i class="bi bi-box-arrow-right"></i>logout</button>
                     </form>
-                    <br/>
-                    <br/>
+                    <a href="{{ url('cetak_pdf')}}" class="btn btn-primary mt-3"><i class="bi bi-printer" target="_blank"></i> Cetak PDF</a>
+                    <!-- <br/>
+                    <br/> -->
                     <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">No</th>
                 <th scope="col">Kode Karyawan Detail</th>
-                <th scope="col">Kode Karyawan</th>
+                <th scope="col">Nama Karyawan</th>
                 <th scope="col">Nomor KTP</th>
                 <th scope="col">Tempat Lahir</th>
                 <th scope="col">Tanggal Lahir</th>
@@ -71,7 +72,7 @@
             <tr>
                 <th scope="row">{{ $no++ }}</th>
                 <td>{{ $item->kode_karyawan_detail }}</td>
-                <td>{{ $item->kode_karyawan }}</td>
+                <td>{{ $item->nama_karyawan }}</td>
                 <td>{{ $item->nomor_ktp }}</td>
                 <td>{{ $item->tempat_lahir }}</td>
                 <td>{{ $item->tanggal_lahir }}</td>

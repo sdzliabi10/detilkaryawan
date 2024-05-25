@@ -15,7 +15,7 @@ class CreateDetilKaryawanTable extends Migration
     {
         Schema::create('detil_karyawan', function (Blueprint $table) {
             $table->increments('kode_karyawan_detail');
-            $table->string('kode_karyawan');
+            $table->string('nama_karyawan');
             $table->string('nomor_ktp');
             $table->string('tempat_lahir');
             $table->date('tanggal_lahir');

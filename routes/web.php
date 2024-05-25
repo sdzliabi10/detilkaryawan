@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::resource('detil_karyawan', DetilKaryawanController::class);
+
 // Route::get('/create', [DetilKaryawanController::class, 'create']);
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);
@@ -32,7 +33,13 @@ Route::post('/register', [AuthController::class, 'store'])->name('store');
 //Route::post('tambah_detil_karyawan',[DetilKaryawanController::class, 'tambah_detil_karyawan']);
 Route::get('/detil_karyawan', [DetilKaryawanController::class, 'index'])->name('detil_karyawan.index')->middleware('auth');
 
+Route::get('/cetak_pdf', [DetilKaryawanController::class, 'cetak_pdf']);
+
+
 // Route::get('/detil_karyawan', [DetilKaryawanController::class, 'index']);
+// Route::post('/detil_karyawan2',[DetilKaryawanController::class,'detil_karyawan2']);
+// Route::get('cetak_pdf',[DetilKaryawanController::class,'cetak_pdf']);
+// Route::get('/cetak_pdf', [DetilKaryawanController::class, 'cetak_pdf']);
 
 
 

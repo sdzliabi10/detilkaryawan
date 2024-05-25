@@ -13,8 +13,13 @@
             <input type="text" class="form-control" id="kode_karyawan_detail" name="kode_karyawan_detail" required>
         </div> -->
         <div class="form-group">
-            <label for="kode_karyawan">Kode Karyawan</label>
-            <input type="text" class="form-control" id="kode_karyawan" name="kode_karyawan" required>
+        <label for="nama_karyawan">Nama Karyawan</label>
+            <select class="form-control" id="nama_karyawan" name="nama_karyawan" required>
+                <option value="">Pilih Karyawan</option>
+                @foreach($karyawan as $k)
+                    <option value="{{ $k->nama_karyawan }}">{{ $k->nama_karyawan }}</option>
+                @endforeach
+            </select>
         </div>
         <div class="form-group">
             <label for="nomor_ktp">Nomor KTP</label>

@@ -70,7 +70,7 @@ class AuthController extends Controller
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8|max:255|confirmed',
         ], [
-            'email' => 'Email sudah terdaftar',
+            'email.unique' => 'Email sudah terdaftar',
             'password.confirmed' => 'confirmasi password tidak sama.',
             'password' => 'Password minimal 8 karakter',
         ]);

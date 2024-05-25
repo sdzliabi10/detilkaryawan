@@ -16,8 +16,8 @@
                                     <td>{{ $detil_karyawan->kode_karyawan_detail }}</td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Kode Karyawan</th>
-                                    <td>{{ $detil_karyawan->kode_karyawan }}</td>
+                                    <th scope="row">Nama Karyawan</th>
+                                    <td>{{ $detil_karyawan->nama_karyawan }}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Nomor KTP</th>
